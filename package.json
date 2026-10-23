@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "NEXT_DIST_DIR=.next-prod next build",
-    "start": "NEXT_DIST_DIR=.next-prod next start",
+    "build": "next build",
+    "start": "next start",
     "build:demo": "NEXT_DIST_DIR=.next-prod next build",
     "start:demo": "NEXT_DIST_DIR=.next-prod next start",
     "test": "node --import ./scripts/register-ts.mjs --test \"tests/unit/*.test.ts\"",

@@ -2,9 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   poweredByHeader: false,
-  // Allow a separate production build dir so a running `next dev` (which owns
-  // `.next`) can never corrupt a demo/production build.
-  distDir: process.env.NEXT_DIST_DIR || ".next",
+  // Always output to default .next directory for Vercel and standard builds
+  distDir: process.env.VERCEL ? ".next" : (process.env.NEXT_DIST_DIR || ".next"),
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
