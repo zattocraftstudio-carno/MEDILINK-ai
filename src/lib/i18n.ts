@@ -294,7 +294,7 @@ export const translations: Record<Language, TranslationSchema> = {
           helper: "Instant Response · No Account Needed",
           scorecard: {
             engine: "AI Engine",
-            status: "Active (MiniMax M3.1)",
+            status: "Active (Nemotron Flash)",
             accuracy: "Triage Accuracy",
             response: "Response Time",
             queries: "Daily Free Consults",
@@ -612,7 +612,7 @@ export const translations: Record<Language, TranslationSchema> = {
           helper: "তাৎক্ষণিক সেবা · কোনো অ্যাকাউন্টের প্রয়োজন নেই",
           scorecard: {
             engine: "এআই ইঞ্জিন",
-            status: "সক্রিয় (MiniMax M3.1)",
+            status: "সক্রিয় (Nemotron Flash)",
             accuracy: "ট্রায়াজ নির্ভুলতা",
             response: "রেসপন্স সময়",
             queries: "দৈনিক ফ্রি পরামর্শ",

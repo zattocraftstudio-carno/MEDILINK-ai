@@ -38,7 +38,7 @@ import type {
    ──────────────────────────────────────────────────────────────────── */
 
 export const VISION_MODEL_ID =
-  process.env.VISION_MODEL_ID || "minimax/minimax-m3.1-flash:free";
+  process.env.VISION_MODEL_ID || "nvidia/nemotron-3.5-super-vl:free";
 
 export const VISION_FALLBACK_MODEL_ID =
   process.env.VISION_FALLBACK_MODEL_ID || "nvidia/nemotron-3.5-super-vl:free";

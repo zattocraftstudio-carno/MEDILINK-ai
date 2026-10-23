@@ -171,12 +171,13 @@ export async function markKeyFailed(keyConfig: ApiKeyConfig, status: number): Pr
     keyConfig.cooldownUntil = Date.now() + COOLDOWN_MS;
     keyConfig.isHealthy = false;
     console.warn(`[MediLink] Key ${keyConfig.label} rate limited / quota exceeded. Cooling down for ${COOLDOWN_MS / 1000}s`);
+  } else if (status === 401 || status === 403) {
+    keyConfig.isHealthy = false;
+    keyConfig.cooldownUntil = Date.now() + 300_000;
+    console.warn(`[MediLink] Key ${keyConfig.label} auth error (${status}). Cooling down for 300s.`);
   } else if (status >= 500) {
     keyConfig.cooldownUntil = Date.now() + 30_000;
     console.warn(`[MediLink] Key ${keyConfig.label} server error (${status}). Short cooldown.`);
-  } else if (status >= 400) {
-    keyConfig.cooldownUntil = Date.now() + 300_000;
-    console.warn(`[MediLink] Key ${keyConfig.label} client error (${status}). Longer cooldown.`);
   }
 
   if (keyConfig.consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {

@@ -281,7 +281,7 @@ export async function POST(req: NextRequest) {
         },
         signal: controller.signal,
         body: JSON.stringify({
-          model: "minimax/minimax-m3.1-flash:free",
+          model: "nvidia/nemotron-3-ultra-550b-a55b:free",
           messages: [
             { role: "system", content: SUMMARY_SYSTEM_PROMPT },
             {

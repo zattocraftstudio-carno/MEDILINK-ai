@@ -339,8 +339,8 @@ function readWithTimeout(
      • Leaked English chain-of-thought.
      • Degenerate repetition loops.
    ──────────────────────────────────────────────────────────────────── */
-const ACCEPT_PREFIX_CHARS = 72; // flush the first chunk as soon as this is sane
-const MIN_FINISHED_PREFIX = 24; // accept a naturally-ended very short reply
+const ACCEPT_PREFIX_CHARS = 24; // flush the first chunk as soon as this is sane
+const MIN_FINISHED_PREFIX = 10; // accept a naturally-ended very short reply
 const STREAM_IDLE_TIMEOUT_MS = 25_000; // no content for 25s → close gracefully
 
 const REPETITION_REGEXES = [
@@ -508,12 +508,7 @@ export async function POST(req: NextRequest) {
       ...messages,
     ];
 
-    const requestHeaders = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${keyConfig.key}`,
-      "HTTP-Referer": "https://medilink.com.bd",
-      "X-Title": "MediLink Bangladesh",
-    };
+    let currentKeyConfig = keyConfig;
 
     /* ── Sequential fallback across the routed candidates ──
        A model counts as "failed to respond" when it errors, produces no
@@ -550,7 +545,12 @@ export async function POST(req: NextRequest) {
       try {
         res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
-          headers: requestHeaders,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${currentKeyConfig.key}`,
+            "HTTP-Referer": "https://medilink.com.bd",
+            "X-Title": "MediLink Bangladesh",
+          },
           signal: combined.signal,
           body: JSON.stringify({
             model: candidate.id,
@@ -571,7 +571,7 @@ export async function POST(req: NextRequest) {
           );
         } else {
           markModelFailed(candidate.id, 0);
-          await markKeyFailed(keyConfig, 0);
+          await markKeyFailed(currentKeyConfig, 0);
           console.warn(
             `[MediLink] ${candidate.id} network error/timeout:`,
             err?.message || err
@@ -589,14 +589,47 @@ export async function POST(req: NextRequest) {
 
       if (!res.ok || !res.body) {
         const errText = await res.text().catch(() => "");
-        markModelFailed(candidate.id, res.status);
-        await markKeyFailed(keyConfig, res.status);
-        console.warn(
-          `[MediLink] ${candidate.id} failed (${res.status}):`,
-          errText.slice(0, 300)
-        );
-        combined.dispose();
-        continue;
+        await markKeyFailed(currentKeyConfig, res.status);
+        // Seamless key rotation: if this key hit rate limits, rotate to next available key in the pool and retry
+        if (res.status === 429 || res.status === 402 || res.status === 401 || res.status === 403) {
+          const nextKey = await selectHealthyKey();
+          if (nextKey && nextKey.key !== currentKeyConfig.key) {
+            console.log(`[MediLink] Rotated key to ${nextKey.label} after status ${res.status}`);
+            currentKeyConfig = nextKey;
+            try {
+              res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${currentKeyConfig.key}`,
+                  "HTTP-Referer": "https://medilink.com.bd",
+                  "X-Title": "MediLink Bangladesh",
+                },
+                signal: combined.signal,
+                body: JSON.stringify({
+                  model: candidate.id,
+                  messages: openRouterMessages,
+                  stream: true,
+                  temperature: candidate.temperature,
+                  max_tokens: candidate.maxTokens,
+                  reasoning: { effort: candidate.reasoningEffort },
+                }),
+              });
+            } catch {
+              res = null;
+            }
+          }
+        }
+
+        if (!res || !res.ok || !res.body) {
+          markModelFailed(candidate.id, res ? res.status : 0);
+          console.warn(
+            `[MediLink] ${candidate.id} failed (${res ? res.status : "network"}):`,
+            errText.slice(0, 300)
+          );
+          combined.dispose();
+          continue;
+        }
       }
 
       // Stage 2 — buffer only the opening 72 visible characters. This is
@@ -665,7 +698,7 @@ export async function POST(req: NextRequest) {
 
       if (!garbledReason && (enoughContent || shortButFinished)) {
         markModelHealthy(candidate.id);
-        await markKeySuccess(keyConfig);
+        await markKeySuccess(currentKeyConfig);
         activeReader = reader;
         activeParser = parser;
         activeDecoder = decoder;
@@ -687,7 +720,7 @@ export async function POST(req: NextRequest) {
         garbledReason ? CORRUPT_OUTPUT_SENTINEL : TTFT_TIMEOUT_SENTINEL
       );
       if (!garbledReason) {
-        await markKeyFailed(keyConfig, 504);
+        await markKeyFailed(currentKeyConfig, 504);
       }
       console.warn(
         `[MediLink] ${candidate.id} rejected (${
@@ -699,7 +732,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!activeReader || !activeParser || !activeDecoder || !activeCandidate) {
-      releaseKey(keyConfig);
+      releaseKey(currentKeyConfig);
       return NextResponse.json(
         { error: "সব AI মডেল এই মুহূর্তে ব্যস্ত। একটু পরে আবার চেষ্টা করুন।" },
         {

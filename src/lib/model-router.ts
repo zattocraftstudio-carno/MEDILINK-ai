@@ -38,9 +38,9 @@ interface ModelDefinition {
 
 const MODEL_DEFS: Record<ModelKey, ModelDefinition> = {
   minimax: {
-    id: "minimax/minimax-m3.1-flash:free",
-    label: "MiniMax M3.1 Flash",
-    shortLabel: "MiniMax Flash",
+    id: "nvidia/nemotron-3-ultra-550b-a55b:free",
+    label: "Nemotron 3 Ultra Flash",
+    shortLabel: "Nemotron Flash",
     tier: "flash",
   },
   supervl: {
@@ -61,9 +61,9 @@ const MODEL_DEFS: Record<ModelKey, ModelDefinition> = {
  * MiniMax 1.4–4.5s, Ultra 1.2–5.5s, Super VL 2.8–6.8s. Budgets leave room
  * for congestion without letting a dead endpoint stall the whole demo. */
 const FLASH_TTFT_MS: Record<ModelKey, number> = {
-  minimax: 10_000,
-  ultra: 12_000,
-  supervl: 24_000,
+  minimax: 20_000,
+  ultra: 20_000,
+  supervl: 25_000,
 };
 
 const PRO_TTFT_MS: Record<ModelKey, number> = {
