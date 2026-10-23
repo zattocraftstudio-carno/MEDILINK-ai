@@ -1,0 +1,44 @@
+{
+  "name": "medilink",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "NEXT_DIST_DIR=.next-prod next build",
+    "start": "NEXT_DIST_DIR=.next-prod next start",
+    "build:demo": "NEXT_DIST_DIR=.next-prod next build",
+    "start:demo": "NEXT_DIST_DIR=.next-prod next start",
+    "test": "node --import ./scripts/register-ts.mjs --test \"tests/unit/*.test.ts\"",
+    "typecheck": "tsc --noEmit --incremental false"
+  },
+  "dependencies": {
+    "@types/three": "^0.186.0",
+    "@upstash/redis": "^1.39.0",
+    "framer-motion": "^13.4.0",
+    "gsap": "^3.15.0",
+    "lucide-react": "^0.441.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "three": "^0.186.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
+  }
+}

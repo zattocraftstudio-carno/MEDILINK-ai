@@ -1,0 +1,421 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+   ───────────────────────────────────────────────────────────────
+   Colours are stored as RGB CHANNEL TRIPLETS (`R G B`) — this is
+   the single source of truth.
+
+   Why triplets instead of hex? Tailwind v3 can only apply an
+   opacity modifier (`bg-brand/10`) when the colour definition
+   contains the `<alpha-value>` placeholder. A bare `var(--brand)`
+   string cannot be alpha-composed, so Tailwind silently DROPS the
+   utility and the class emits no CSS at all.
+
+   With triplets we can write:
+       rgb(var(--brand-rgb))            → opaque
+       rgb(var(--brand-rgb) / 0.1)      → 10% alpha
+   and both work, from one token.
+
+   The friendly aliases below (`--brand: rgb(var(--brand-rgb))`)
+   keep every hand-written `var(--brand)` usage in this file and in
+   any future CSS working unchanged.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Surfaces ── */
+  --bg-main-rgb: 255 255 255;
+  --bg-soft-rgb: 235 243 250;
+  --bg-mint-rgb: 240 250 246;
+
+  /* ── Text ── */
+  --text-primary-rgb: 26 43 76;
+  --text-muted-rgb: 91 107 133;
+  --text-inverse-rgb: 255 255 255;
+
+  /* ── Brand ── */
+  --brand-rgb: 23 120 111;
+  --brand-dark-rgb: 15 92 85;
+  --brand-light-rgb: 230 244 241;
+  --brand-soft-rgb: 43 168 155;
+
+  --hero-from-rgb: 14 59 58;
+  --hero-to-rgb: 23 120 111;
+
+  /* ── Accents ── */
+  --accent-rgb: 245 158 11;
+  --accent-soft-rgb: 254 243 199;
+  --emergency-rgb: 217 45 32;
+  --emergency-soft-rgb: 254 236 236;
+  --success-rgb: 22 163 74;
+  --success-soft-rgb: 232 247 238;
+
+  /* ── Borders ── */
+  --border-rgb: 217 230 242;
+  --border-soft-rgb: 234 241 248;
+
+  --whatsapp-rgb: 37 211 102;
+  --whatsapp-soft-rgb: 232 250 240;
+
+  /* ── Friendly aliases (consumed by hand-written CSS) ── */
+  --bg-main: rgb(var(--bg-main-rgb));
+  --bg-soft: rgb(var(--bg-soft-rgb));
+  --bg-mint: rgb(var(--bg-mint-rgb));
+  --text-primary: rgb(var(--text-primary-rgb));
+  --text-muted: rgb(var(--text-muted-rgb));
+  --text-inverse: rgb(var(--text-inverse-rgb));
+  --brand: rgb(var(--brand-rgb));
+  --brand-dark: rgb(var(--brand-dark-rgb));
+  --brand-light: rgb(var(--brand-light-rgb));
+  --brand-soft: rgb(var(--brand-soft-rgb));
+  --hero-from: rgb(var(--hero-from-rgb));
+  --hero-to: rgb(var(--hero-to-rgb));
+  --accent: rgb(var(--accent-rgb));
+  --accent-soft: rgb(var(--accent-soft-rgb));
+  --emergency: rgb(var(--emergency-rgb));
+  --emergency-soft: rgb(var(--emergency-soft-rgb));
+  --success: rgb(var(--success-rgb));
+  --success-soft: rgb(var(--success-soft-rgb));
+  --border: rgb(var(--border-rgb));
+  --border-soft: rgb(var(--border-soft-rgb));
+  --whatsapp: rgb(var(--whatsapp-rgb));
+  --whatsapp-soft: rgb(var(--whatsapp-soft-rgb));
+
+  /* ── Non-colour tokens ── */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-sm: 0 1px 3px rgba(26, 43, 76, 0.08), 0 1px 2px rgba(26, 43, 76, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(26, 43, 76, 0.1), 0 2px 4px -2px rgba(26, 43, 76, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 43, 76, 0.1), 0 4px 6px -4px rgba(26, 43, 76, 0.05);
+
+  /* ── Layout offsets (single source of truth for the navbar) ──
+     --navbar-h is the TALLEST navbar state (at rest, before the
+     scroll-shrink). Every offset that has to clear the fixed navbar
+     uses --content-offset so the content can never slide underneath
+     it — previously the layout padded 72px while the navbar was
+     76px, which clipped 4px of every page. */
+  --navbar-h: 76px;
+  --navbar-h-scrolled: 64px;
+  --content-offset: 76px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--bg-main-rgb));
+    color: rgb(var(--text-primary-rgb));
+    font-family: var(--font-body), Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-head), Montserrat, system-ui, sans-serif;
+    color: rgb(var(--text-primary-rgb));
+    font-weight: 700;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     THE BANGLA LAYER
+     Any subtree tagged lang="bn" renders in Hind Siliguri:
+     correct glyphs, correct matras, correct leading — without
+     every component needing to know about it.
+
+     This is the mechanism that lets the AI's Bangla replies be
+     typeset correctly, and it doubles as the WCAG 3.1.2
+     "Language of Parts" signal for screen readers.
+     ───────────────────────────────────────────────────────────── */
+  :lang(bn) {
+    font-family: var(--font-bengali), "Hind Siliguri", system-ui, sans-serif;
+    line-height: 1.75;        /* Bangla needs more leading than Latin */
+    letter-spacing: 0;        /* Montserrat tracking breaks Bangla matras */
+    word-break: normal;
+    line-break: loose;
+  }
+
+  :lang(bn) h1, :lang(bn) h2, :lang(bn) h3,
+  :lang(bn) h4, :lang(bn) h5, :lang(bn) h6 {
+    font-family: var(--font-bengali), "Hind Siliguri", system-ui, sans-serif;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     JS-OPTIONAL REVEAL
+     The VISIBLE state is the CSS default; the hidden state only
+     exists when JavaScript is alive (`.js` is added by an inline
+     script in the root layout). Crawlers and no-JS users therefore
+     always receive the content.
+     ───────────────────────────────────────────────────────────── */
+  .js .reveal {
+    opacity: 0;
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+      opacity: 1;
+    }
+  }
+
+  /* Touch & tap responsiveness for physical mobile devices */
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Base Primitives
+   Declared inside @layer components so that ANY Tailwind utility
+   (e.g. `rounded-full`, `shadow-xs`) wins over these defaults.
+   Previously they sat outside every layer, which meant a utility
+   of equal specificity could never override them — that is why
+   `Skeleton`'s `rounded` prop was silently ignored.
+   ───────────────────────────────────────────────────────────── */
+@layer components {
+    .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .input-field {
+    height: 48px;
+    padding: 0 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 16px;
+    color: var(--text-primary);
+    width: 100%;
+    transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease);
+  }
+  .input-field::placeholder {
+    color: var(--text-muted);
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-light);
+  }
+  .input-field.error {
+    border-color: var(--emergency);
+  }
+  .input-field.error:focus {
+    box-shadow: 0 0 0 3px var(--emergency-soft);
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-flat {
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 160ms var(--ease);
+  }
+  .chip:hover {
+    border-color: var(--brand-soft);
+  }
+  .chip.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* The footer word-mark. The class was used but never defined, so the
+     watermark rendered as ordinary inherited-size body text. */
+  .giant-text-watermark {
+    font-family: var(--font-head), Montserrat, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 14vw, 11rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-align: center;
+    color: rgb(var(--text-primary-rgb) / 0.05);
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, var(--bg-soft) 25%, #F5F9FC 37%, var(--bg-soft) 63%);
+    background-size: 400% 100%;
+    animation: skeletonShimmer 1.4s ease infinite;
+    border-radius: 8px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL ARRIVAL ANIMATIONS
+   ═══════════════════════════════════════════════ */
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes bounceUp {
+  from { opacity: 0; transform: translateY(80px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes flipIn {
+  from { opacity: 0; transform: perspective(600px) rotateX(-20deg); }
+  to { opacity: 1; transform: perspective(600px) rotateX(0); }
+}
+@keyframes rotateIn {
+  from { opacity: 0; transform: rotate(-15deg) scale(0.9); }
+  to { opacity: 1; transform: rotate(0) scale(1); }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-slideLeft { animation: slideLeft 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slideRight { animation: slideRight 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slideUp { animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-scaleUp { animation: scaleUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-bounceUp { animation: bounceUp 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fadeIn { animation: fadeIn 0.5s ease both; }
+.animate-flipIn { animation: flipIn 0.8s ease both; }
+.animate-rotateIn { animation: rotateIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-zoomIn { animation: zoomIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-dropDown { animation: dropDown 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-popIn { animation: popIn 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ═══════════════════════════════════════════════
+   NAVBAR ARRIVAL SEQUENCE
+   Surface first, then logo → links → actions.
+   The navbar is critical navigation, so its visible
+   state is the CSS default. These animations only
+   start from a faint, slightly offset state — they
+   never leave an item at opacity 0 or move the
+   header off-screen. A delayed hydration, a
+   background tab, or a missing keyframe therefore
+   cannot hide the navbar until the user hovers it.
+   ═══════════════════════════════════════════════ */
+@keyframes navSurfaceIn {
+  from { opacity: 0; transform: scaleY(0.65); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+@keyframes navEnterUp {
+  from { opacity: 0.2; transform: translateY(-10px) scale(0.985); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes navEnterLeft {
+  from { opacity: 0.2; transform: translateX(-12px); filter: blur(2px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+@keyframes navEnterRight {
+  from { opacity: 0.2; transform: translateX(12px); filter: blur(2px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+.nav-surface {
+  z-index: 0;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.99) 0%, rgb(240 250 246 / 0.9) 72%, rgb(240 250 246 / 0) 100%);
+  transform-origin: top center;
+  animation: navSurfaceIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+.nav-enter-up { animation: navEnterUp 0.5s cubic-bezier(0.16,1,0.3,1) backwards; }
+.nav-enter-left { animation: navEnterLeft 0.5s cubic-bezier(0.16,1,0.3,1) backwards; }
+.nav-enter-right { animation: navEnterRight 0.5s cubic-bezier(0.16,1,0.3,1) backwards; }
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

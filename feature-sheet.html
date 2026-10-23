@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MediLink AI — Feature Sheet</title>
+<style>
+  @page { size: A4 portrait; margin: 10mm; }
+  * { box-sizing: border-box; }
+  :root {
+    --brand: #17786f;
+    --brand-dark: #0f5c55;
+    --ink: #1a2b4c;
+    --muted: #5c6b7a;
+    --line: #dce8e5;
+    --mint: #f1faf7;
+    --amber: #b45309;
+    --red: #c62828;
+  }
+  body {
+    margin: 0;
+    background: #eaf3f1;
+    color: var(--ink);
+    font-family: "Hind Siliguri", "Noto Sans Bengali", "Segoe UI", Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.38;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 18px auto;
+    padding: 10mm;
+    background: #fff;
+    box-shadow: 0 10px 35px rgba(15, 92, 85, .16);
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8mm;
+    padding-bottom: 3mm;
+    border-bottom: 2px solid var(--brand);
+  }
+  .brandline { display: flex; align-items: center; gap: 3mm; }
+  .mark {
+    width: 11mm; height: 11mm; border-radius: 50%;
+    background: var(--brand); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17pt; font-weight: 800;
+  }
+  h1 { margin: 0; font-size: 21pt; line-height: 1.05; letter-spacing: -.02em; }
+  h1 span { color: var(--brand); }
+  .subtitle { margin-top: 1.2mm; color: var(--muted); font-size: 8.4pt; }
+  .badge {
+    white-space: nowrap;
+    background: var(--mint); border: 1px solid #b9ded7;
+    color: var(--brand-dark); border-radius: 999px;
+    padding: 1.5mm 3mm; font-size: 7.8pt; font-weight: 700;
+  }
+  .stats {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 2mm; margin: 3mm 0;
+  }
+  .stat {
+    background: var(--mint); border: 1px solid var(--line);
+    border-radius: 2.5mm; padding: 2mm 1.5mm; text-align: center;
+  }
+  .stat strong { display: block; color: var(--brand-dark); font-size: 12pt; line-height: 1; }
+  .stat span { display: block; color: var(--muted); font-size: 7.2pt; margin-top: 1mm; }
+  h2 {
+    margin: 3.2mm 0 1.8mm;
+    font-size: 11.5pt; line-height: 1.1;
+    color: var(--brand-dark);
+  }
+  h2 .hint { color: var(--muted); font-size: 7.5pt; font-weight: 400; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.1pt; }
+  th {
+    background: var(--brand); color: #fff; text-align: left;
+    padding: 1.4mm 2mm; font-weight: 700;
+  }
+  td { padding: 1.3mm 2mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:nth-child(even) td { background: #f8fcfb; }
+  td:first-child { width: 17%; font-weight: 700; color: var(--brand-dark); }
+  td:nth-child(2) { width: 31%; color: var(--muted); }
+  .new { color: #0a5c54; }
+  .new::before {
+    content: "NEW";
+    display: inline-block;
+    background: #e4f6f1; color: #0a5c54;
+    border: 1px solid #b9ded7; border-radius: 999px;
+    font-size: 5.8pt; font-weight: 800; letter-spacing: .04em;
+    padding: .3mm 1.2mm; margin-right: 1.2mm; vertical-align: 1px;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .card {
+    border: 1px solid var(--line); border-radius: 2.5mm;
+    padding: 2.6mm 3mm; background: #fff; break-inside: avoid;
+  }
+  .card h3 {
+    margin: 0 0 1mm; font-size: 9.6pt; color: var(--ink);
+    display: flex; align-items: center; gap: 1.5mm;
+  }
+  .dot { width: 2mm; height: 2mm; border-radius: 50%; background: var(--brand); display: inline-block; }
+  ul { margin: 0; padding-left: 3.8mm; }
+  li { margin: 0 0 .7mm; font-size: 8pt; }
+  li::marker { color: var(--brand); }
+  .boundaries {
+    margin-top: 3mm; border: 1px solid #f1d6b5;
+    background: #fffaf2; border-radius: 2.5mm; padding: 2.6mm 3mm;
+  }
+  .boundaries h2 { margin: 0 0 1mm; color: var(--amber); font-size: 9.8pt; }
+  .boundaries p { margin: 0; font-size: 7.8pt; color: #6b4a1e; }
+  .boundaries strong { color: #5a3a12; }
+  footer {
+    display: flex; justify-content: space-between; gap: 5mm;
+    margin-top: 2.5mm; padding-top: 1.8mm;
+    border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 6.9pt;
+  }
+  .no-print {
+    width: 210mm; margin: 0 auto 20px; text-align: right;
+    font-family: "Segoe UI", Arial, sans-serif; font-size: 11px; color: #48625d;
+  }
+  .no-print button {
+    border: 1px solid #b9ded7; background: #fff; color: #0f5c55;
+    border-radius: 6px; padding: 6px 10px; cursor: pointer; font-weight: 600;
+  }
+  @media print {
+    body { background: #fff; font-size: 8.4pt; }
+    .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+    .no-print { display: none; }
+    .card { padding: 2.2mm 2.6mm; }
+    li { font-size: 7.7pt; }
+    table { font-size: 7.7pt; }
+    td { padding: 1.1mm 1.8mm; }
+    th { padding: 1.2mm 1.8mm; }
+  }
+</style>
+</head>
+<body>
+<div class="no-print">
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="page">
+  <header>
+    <div>
+      <div class="brandline">
+        <div class="mark">M</div>
+        <h1>Medi<span>Link</span> AI</h1>
+      </div>
+      <div class="subtitle">Feature Sheet · Bangladesh-first AI healthcare platform · Bangla · English · Banglish</div>
+    </div>
+    <div class="badge">Competition Demo · 2026</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><strong>10</strong><span>pages</span></div>
+    <div class="stat"><strong>4</strong><span>API routes</span></div>
+    <div class="stat"><strong>3</strong><span>free AI models</span></div>
+    <div class="stat"><strong>3</strong><span>languages</span></div>
+    <div class="stat"><strong>2</strong><span>chat modes</span></div>
+    <div class="stat"><strong>115</strong><span>unit tests</span></div>
+  </div>
+
+  <h2>New vs Old <span class="hint">— what changed in the latest build</span></h2>
+  <table>
+    <thead>
+      <tr><th>Area</th><th>Core / older</th><th>New / upgraded</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AI chat</td><td>Multilingual chat, history, streaming, voice input, read-aloud</td><td class="new">3-model dynamic routing, Flash/Pro, fallback + cooldown, live model badge</td></tr>
+      <tr><td>Safety</td><td>Disclaimer and emergency advice</td><td class="new">Tiered triage, serious/emergency zero-drug-name rule, prompt-injection guard, output sanity gates</td></tr>
+      <tr><td>Documents</td><td>No patient document upload</td><td class="new">Prescription/report photo OCR, patient confirmation, IndexedDB storage, retry fallback</td></tr>
+      <tr><td>Handover</td><td>None</td><td class="new">Editable doctor summary, red flags, specialty match, WhatsApp booking, Premium PDF</td></tr>
+      <tr><td>Medications</td><td>None</td><td class="new">Dose parsing, schedules, taken/skip/pause, browser + service-worker reminders</td></tr>
+      <tr><td>Pharmacy</td><td>Catalogue, cart, checkout</td><td class="new">Rx-only gate, OCR prescription match, simulated payment, WhatsApp order, 20% Premium discount</td></tr>
+      <tr><td>Emergency</td><td>999 and hospital list</td><td class="new">GPS/manual area, road-time matrix + fallbacks, SMS/WhatsApp location share</td></tr>
+      <tr><td>Premium</td><td>None</td><td class="new">৳500/mo · ৳4,800/yr; bKash/Nagad/card demo checkout; receipt, renewal, persistent Pro unlock</td></tr>
+      <tr><td>Design</td><td>Standard landing page</td><td class="new">Realistic 3D DNA, seamless hero gradient, GSAP motion, responsive mobile navigation</td></tr>
+      <tr><td>Platform</td><td>Older Next.js stack</td><td class="new">Next.js 16.4.2 + React 19.3.1 + Turbopack, 115 tests, SEO/JSON-LD</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Core Features</h2>
+  <div class="grid">
+    <div class="card">
+      <h3><span class="dot"></span>Dr. MediLink — AI Doctor</h3>
+      <ul>
+        <li>Bangla, English and Banglish with a natural physician tone and follow-up questions.</li>
+        <li>Flash = concise; Pro = detailed, structured (Premium). Streaming, stop, copy, listen and voice input.</li>
+        <li>Local chat history, auto titles, delete, mobile drawer; free plan 2 chats/day.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Safety & Handover</h3>
+      <ul>
+        <li>Tiered emergency/serious/mental-health/minor/general detection; red flags point to 999.</li>
+        <li>Serious cases avoid medicine names; handover never invents a diagnosis or dose.</li>
+        <li>Editable doctor summary with red flags, specialty match, WhatsApp preview and Premium PDF.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Pharmacy</h3>
+      <ul>
+        <li>12 demo medicines, search/filter/sort, stock-aware cart, ৳30 delivery, mobile cart bar.</li>
+        <li>bKash, Nagad, card or COD; simulated 1.7s success; order ID + WhatsApp handoff.</li>
+        <li>Rx-only gate, OCR prescription match, pharmacist-review status, 20% Premium discount.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Doctors & Emergency</h3>
+      <ul>
+        <li>6 doctor profiles, search, specialty filters, nearby geolocation and distance sorting.</li>
+        <li>WhatsApp booking/video request, optional chat summary, 20% Premium fee discount.</li>
+        <li>999 SOS, 5 hospitals, GPS/area fallback, road-time matrix, directions, SMS/WhatsApp location share.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Medication Reminders</h3>
+      <ul>
+        <li>Next dose, today timeline, all schedules; one-tap taken/skip/pause/resume.</li>
+        <li>Dose parsing from AI replies; schedule editor with times, duration and notes.</li>
+        <li>Toast + browser notification + service-worker notification; active count in chat sidebar.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Premium & Platform</h3>
+      <ul>
+        <li>৳500/month or ৳4,800/year; bKash, Nagad, card; always-successful demo checkout.</li>
+        <li>Receipt, renewal date, active dashboard; Pro unlock, 20% pharmacy/doctor discounts, PDF.</li>
+        <li>Next.js 16.4.2, React 19.3.1, Turbopack, 3 free model pool, 4 APIs, SEO/JSON-LD, 115 tests.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="boundaries">
+    <h2>Demo Boundaries — say this honestly on stage</h2>
+    <p><strong>No real auth/DB/encryption</strong> · profile, chat and reminders are local; <strong>payments and Premium are simulated</strong> · static doctor/medicine/hospital data; <strong>WhatsApp/SMS handoff</strong>, not real booking/delivery · <strong>OCR and Maps need API keys</strong> · free models can be slow; <strong>AI is assistive, not a diagnosis</strong>. In an emergency, call <strong>999</strong>.</p>
+  </div>
+
+  <footer>
+    <span><strong>MediLink AI</strong> · Your Health, One Link Away</span>
+    <span>10 pages · 4 APIs · 3 languages · 2 modes · 115 tests</span>
+  </footer>
+</div>
+</body>
+</html>

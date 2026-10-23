@@ -1,0 +1,177 @@
+[
+  {
+    "id": "med_001",
+    "name": "Paracetamol 500mg",
+    "genericName": "Paracetamol",
+    "category": "Fever & Pain",
+    "price": 2.5,
+    "stock": 200,
+    "requiresRx": false,
+    "image": "/assets/medicines/paracetamol.jpg",
+    "description": "Fever, headache, body ache, mild to moderate pain relief.",
+    "labelFrequency": "1 tablet up to 3 times daily, after meals"
+  },
+  {
+    "id": "med_002",
+    "name": "ORS Saline",
+    "genericName": "Oral Rehydration Saline",
+    "category": "First Aid",
+    "price": 15.0,
+    "stock": 150,
+    "requiresRx": false,
+    "image": "/assets/medicines/ors.jpg",
+    "description": "Dehydration, diarrhea, fluid loss, rehydration after illness.",
+    "labelFrequency": "1 sachet in half a glass of water, after each loose motion"
+  },
+  {
+    "id": "med_003",
+    "name": "Omeprazole 20mg",
+    "genericName": "Omeprazole",
+    "category": "Gastric",
+    "price": 5.0,
+    "stock": 100,
+    "requiresRx": false,
+    "image": "/assets/medicines/omeprazole.jpg",
+    "description": "Acidity, gastric, heartburn, ulcer, stomach burn.",
+    "labelFrequency": "1 capsule once daily, before breakfast"
+  },
+  {
+    "id": "med_004",
+    "name": "Cetirizine 10mg",
+    "genericName": "Cetirizine",
+    "category": "Allergy",
+    "price": 3.0,
+    "stock": 120,
+    "requiresRx": false,
+    "image": "/assets/medicines/cetirizine.jpg",
+    "description": "Allergy, skin rash, itching, sneezing, hay fever.",
+    "labelFrequency": "1 tablet once daily"
+  },
+  {
+    "id": "med_005",
+    "name": "Vitamin C 500mg",
+    "genericName": "Ascorbic Acid",
+    "category": "Vitamins",
+    "price": 8.0,
+    "stock": 80,
+    "requiresRx": false,
+    "image": "/assets/medicines/vitamin-c.jpg",
+    "description": "Immunity, weakness, gum health, antioxidant.",
+    "labelFrequency": "1 tablet once daily, after meals"
+  },
+  {
+    "id": "med_006",
+    "name": "Ibuprofen 400mg",
+    "genericName": "Ibuprofen",
+    "category": "Fever & Pain",
+    "price": 4.5,
+    "stock": 90,
+    "requiresRx": false,
+    "image": "/assets/medicines/ibuprofen.jpg",
+    "description": "Pain, inflammation, fever, joint and muscle ache.",
+    "labelFrequency": "1 tablet up to 3 times daily, after meals"
+  },
+  {
+    "id": "med_007",
+    "name": "Antiseptic Cream",
+    "genericName": "Chlorhexidine",
+    "category": "First Aid",
+    "price": 45.0,
+    "stock": 60,
+    "requiresRx": false,
+    "image": "/assets/medicines/antiseptic.jpg",
+    "description": "Wound, cut, minor burn, skin infection, first aid.",
+    "labelFrequency": "Apply a thin layer twice daily"
+  },
+  {
+    "id": "med_008",
+    "name": "Cough Syrup",
+    "genericName": "Dextromethorphan",
+    "category": "Fever & Pain",
+    "price": 65.0,
+    "stock": 75,
+    "requiresRx": false,
+    "image": "/assets/medicines/cough-syrup.jpg",
+    "description": "Cough, dry cough, throat irritation, cold.",
+    "labelFrequency": "2 teaspoonfuls up to 3 times daily"
+  },
+  {
+    "id": "med_009",
+    "name": "Multivitamin Tablet",
+    "genericName": "Multivitamin",
+    "category": "Vitamins",
+    "price": 12.0,
+    "stock": 110,
+    "requiresRx": false,
+    "image": "/assets/medicines/multivitamin.jpg",
+    "description": "Daily nutrition, weakness, vitamin supplement, energy.",
+    "labelFrequency": "1 tablet once daily, after meals"
+  },
+  {
+    "id": "med_010",
+    "name": "Amoxicillin 500mg",
+    "genericName": "Amoxicillin",
+    "category": "Infection",
+    "price": 10.0,
+    "stock": 50,
+    "requiresRx": true,
+    "image": "/assets/medicines/amoxicillin.jpg",
+    "description": "Bacterial infection, throat infection, requires prescription.",
+    "rxClass": "antibiotic",
+    "rxPolicy": {
+      "requireImage": true,
+      "maxQuantityPerOrder": 30,
+      "requirePrescriberName": true,
+      "notes": "Prescription must show the prescriber's name, date and signature."
+    },
+    "rxAliases": [
+      "amoxycillin",
+      "amox",
+      "amoxil",
+      "mox",
+      "moxicip",
+      "অ্যামোক্সিসিলিন"
+    ],
+    "labelFrequency": "1 capsule 3 times daily, after meals"
+  },
+  {
+    "id": "med_011",
+    "name": "Ciprofloxacin 500mg",
+    "genericName": "Ciprofloxacin",
+    "category": "Infection",
+    "price": 14.0,
+    "stock": 40,
+    "requiresRx": true,
+    "image": "/assets/medicines/ciprofloxacin.jpg",
+    "description": "Bacterial infection of urinary tract, gut and bone. Requires prescription.",
+    "rxClass": "antibiotic",
+    "rxPolicy": {
+      "requireImage": true,
+      "maxQuantityPerOrder": 20,
+      "requirePrescriberName": true,
+      "notes": "Antibiotic course — the full prescribed duration must be completed."
+    },
+    "rxAliases": ["cipro", "ciprofloxacin", "ciproxin", "ciprax", "সিপ্রোফ্লক্সাসিন"],
+    "labelFrequency": "1 tablet twice daily"
+  },
+  {
+    "id": "med_012",
+    "name": "Montelukast 10mg",
+    "genericName": "Montelukast",
+    "category": "Allergy",
+    "price": 18.0,
+    "stock": 35,
+    "requiresRx": true,
+    "image": "/assets/medicines/montelukast.jpg",
+    "description": "Asthma prevention, seasonal allergy, sneezing. Requires prescription.",
+    "rxClass": "other",
+    "rxPolicy": {
+      "requireImage": true,
+      "maxQuantityPerOrder": 30,
+      "requirePrescriberName": true,
+      "notes": "Prescription required for long-term use."
+    },
+    "rxAliases": ["montelukast", "singulair", "montair", "মন্টেলুকাস্ট"],
+    "labelFrequency": "1 tablet once daily in the evening"
+  }
+]

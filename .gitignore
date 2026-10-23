@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.next-prod/
+.env
+.env.local
+.env*.local
+
+# build artifacts
+tsconfig.tsbuildinfo

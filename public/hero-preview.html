@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<!--
+  DESIGN ARTIFACT — standalone preview of the MediLink AI "Care Route" hero.
+  Delete public/hero-preview.html after sign-off; the production component is
+  src/components/landing/HeroSection.tsx.
+
+  Token values are copied verbatim from src/app/globals.css (as hex, because a
+  standalone file has no Tailwind). Keep them in sync if the tokens change.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MediLink AI — Care Route hero (design preview)</title>
+
+    <!-- Same three families the app already loads via next/font. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-main: #ffffff;
+        --bg-soft: #ebf3fa;
+        --brand: #17786f;
+        --brand-dark: #0f5c55;
+        --brand-light: #e6f4f1;
+        --text-primary: #1a2b4c;
+        --text-muted: #5b6b85;
+        --border-soft: #eaf1f8;
+        --emergency: #d92d20;
+        --emergency-soft: #feecec;
+        --success: #16a34a;
+
+        --font-head: "Montserrat", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --font-bengali: "Hind Siliguri", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg-main);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: var(--bg-main);
+      }
+
+      /* ── Atmosphere ─────────────────────────────────────────────
+         One dominant hue (teal), one supporting surface (soft blue),
+         one rare accent (emergency red) used exactly once. */
+      .hero-backdrop {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            44% 40% at 76% 22%,
+            rgba(23, 120, 111, 0.13) 0%,
+            transparent 68%
+          ),
+          radial-gradient(
+            38% 36% at 6% 82%,
+            rgba(235, 243, 250, 0.95) 0%,
+            transparent 72%
+          );
+      }
+
+      /* A faint dot grid, masked so it only reads around the visual. */
+      .hero-backdrop::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(23, 120, 111, 0.3) 1px,
+          transparent 1px
+        );
+        background-size: 26px 26px;
+        -webkit-mask-image: radial-gradient(
+          40% 38% at 78% 20%,
+          #000 0%,
+          transparent 76%
+        );
+        mask-image: radial-gradient(40% 38% at 78% 20%, #000 0%, transparent 76%);
+        opacity: 0.32;
+      }
+
+      .hero__inner {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        min-height: max(640px, 88svh);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero__split {
+        display: grid;
+        gap: 40px;
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
+        .hero__split {
+          grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+          gap: 32px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .hero__split {
+          gap: 40px;
+        }
+        .hero__inner {
+          padding: 56px 24px;
+        }
+      }
+
+      /* ── Eyebrow badge ─────────────────────────────────────────── */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        padding: 8px 16px 8px 12px;
+        margin-bottom: 28px;
+        border: 1px solid rgba(23, 120, 111, 0.15);
+        border-radius: 9999px;
+        background: rgba(230, 244, 241, 0.7);
+        color: var(--brand);
+        font-family: var(--font-body);
+        font-size: 12.5px;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      .badge__dot {
+        position: relative;
+        width: 8px;
+        height: 8px;
+        flex: none;
+      }
+
+      .badge__dot::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: var(--success);
+        opacity: 0.6;
+        animation: ping 2s ease-out infinite;
+      }
+
+      .badge__dot::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: var(--success);
+      }
+
+      @keyframes ping {
+        0% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(2.4);
+          opacity: 0;
+        }
+      }
+
+      /* ── Headline ──────────────────────────────────────────────── */
+      .hero__title {
+        font-family: var(--font-head);
+        font-weight: 800;
+        font-size: clamp(2.25rem, 4vw, 3rem);
+        line-height: 1.06;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+      }
+
+      .hero__title-line--ink {
+        color: var(--text-primary);
+      }
+
+      .hero__title-line--brand {
+        color: var(--brand);
+      }
+
+      /* ── Subtext ───────────────────────────────────────────────── */
+      .hero__sub {
+        max-width: 520px;
+        margin-bottom: 36px;
+        font-family: var(--font-body);
+        font-size: 17.5px;
+        line-height: 1.72;
+        color: var(--text-muted);
+      }
+
+      /* ── CTAs ──────────────────────────────────────────────────── */
+      .hero__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      @media (min-width: 640px) {
+        .hero__actions {
+          flex-direction: row;
+          align-items: center;
+          gap: 16px;
+        }
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-family: var(--font-head);
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .btn--primary {
+        background: var(--brand);
+        color: #fff;
+        border: 1.5px solid var(--brand);
+        box-shadow: 0 10px 24px -10px rgba(23, 120, 111, 0.55);
+      }
+
+      .btn--primary:hover {
+        background: var(--brand-dark);
+        border-color: var(--brand-dark);
+        box-shadow: 0 18px 34px -12px rgba(23, 120, 111, 0.6);
+        transform: translateY(-1px);
+      }
+
+      .btn--secondary {
+        background: #fff;
+        color: var(--brand);
+        border: 1.5px solid rgba(23, 120, 111, 0.8);
+      }
+
+      .btn--secondary:hover {
+        background: var(--brand);
+        color: #fff;
+        border-color: var(--brand);
+        transform: translateY(-1px);
+      }
+
+      .btn--tertiary {
+        padding: 14px 4px;
+        color: var(--text-muted);
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 14px;
+        text-underline-offset: 4px;
+      }
+
+      .btn--tertiary:hover {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+
+      .btn:focus-visible,
+      .node:focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 4px;
+      }
+
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ── Micro-assurance line ─────────────────────────────────── */
+      .hero__assurance {
+        margin-top: 24px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      /* ── Product visual ───────────────────────────────────────── */
+      .hero__visual {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 1024px) {
+        .hero__visual {
+          max-width: none;
+        }
+      }
+
+      .hero-visual-card {
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+        border: 1px solid var(--border-soft);
+        border-radius: 22px;
+        background: #fff;
+        box-shadow:
+          0 1px 2px rgba(26, 43, 76, 0.04),
+          0 16px 36px -18px rgba(26, 43, 76, 0.18),
+          0 48px 90px -44px rgba(23, 120, 111, 0.3);
+      }
+
+      .chat__chrome {
+        display: none;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--border-soft);
+        background: rgba(235, 243, 250, 0.7);
+      }
+
+      @media (min-width: 640px) {
+        .chat__chrome {
+          display: flex;
+        }
+      }
+
+      .chat__chrome i {
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--border-soft);
+      }
+
+      .chat__url {
+        margin-left: 10px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: #fff;
+        font-family: var(--font-body);
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .chat__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .chat__avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        flex: none;
+        border-radius: 9999px;
+        background: var(--brand-light);
+        color: var(--brand);
+        font-family: var(--font-head);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .chat__avatar::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #fff;
+        border-radius: 9999px;
+        background: var(--success);
+      }
+
+      .chat__name {
+        font-family: var(--font-head);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text-primary);
+      }
+
+      .chat__role {
+        font-family: var(--font-body);
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .chat__body {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+      }
+
+      .bubble {
+        max-width: 80%;
+        padding: 10px 16px;
+        border-radius: 18px;
+        font-family: var(--font-bengali);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .bubble--user {
+        margin-left: auto;
+        border-top-right-radius: 4px;
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .bubble--bot {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        max-width: 92%;
+      }
+
+      .bubble--bot p {
+        max-width: 84%;
+        border: 1px solid var(--border-soft);
+        border-top-left-radius: 4px;
+        background: #fff;
+        color: var(--text-primary);
+      }
+
+      .chat__dm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        flex: none;
+        margin-top: 4px;
+        border-radius: 9999px;
+        background: var(--brand);
+        color: #fff;
+        font-family: var(--font-head);
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .chat__handoff {
+        max-width: 84%;
+        margin-left: 38px;
+        padding: 10px 14px;
+        border: 1px solid rgba(23, 120, 111, 0.2);
+        border-radius: 16px;
+        background: rgba(230, 244, 241, 0.6);
+        color: var(--brand);
+        font-family: var(--font-body);
+        font-size: 12.5px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .chat__handoff span:last-child {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(23, 120, 111, 0.7);
+      }
+
+      .chat__prompts {
+        display: none;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 16px 20px;
+        border-top: 1px solid var(--border-soft);
+        background: rgba(235, 243, 250, 0.4);
+      }
+
+      @media (min-width: 640px) {
+        .chat__prompts {
+          display: flex;
+        }
+      }
+
+      .chat__prompts span {
+        padding: 6px 12px;
+        border: 1px solid var(--border-soft);
+        border-radius: 9999px;
+        background: #fff;
+        color: var(--brand);
+        font-family: var(--font-bengali);
+        font-size: 12.5px;
+        font-weight: 500;
+      }
+
+      /* ── Floating accent ──────────────────────────────────────── */
+      .hero-float-card {
+        position: absolute;
+        z-index: 20;
+        width: 186px;
+        padding: 14px;
+        border: 1px solid var(--border-soft);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow:
+          0 1px 2px rgba(26, 43, 76, 0.05),
+          0 14px 30px -12px rgba(26, 43, 76, 0.16),
+          0 30px 60px -34px rgba(23, 120, 111, 0.24);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-float-card--emergency {
+        top: -20px;
+        right: -8px;
+      }
+
+      @media (min-width: 640px) {
+        .hero-float-card--emergency {
+          right: -16px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .hero-float-card--emergency {
+          right: -28px;
+        }
+      }
+
+      .hero-float-card__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        flex: none;
+        border-radius: 9999px;
+        background: var(--emergency-soft);
+        color: var(--emergency);
+      }
+
+      .hero-float-card__icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .hero-float-card__title {
+        font-family: var(--font-head);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text-primary);
+      }
+
+      .hero-float-card__sub {
+        font-family: var(--font-body);
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      /* ── Node band ─────────────────────────────────────────────── */
+      .band {
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border-soft);
+      }
+
+      @media (min-width: 1280px) {
+        .band {
+          margin-top: 48px;
+        }
+      }
+
+      .band__label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+
+      .band__label::before {
+        content: "";
+        width: 18px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--brand);
+      }
+
+      .band__row {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .band__row {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 20px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .band__row {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          gap: 0;
+        }
+      }
+
+      /* ── Node card ─────────────────────────────────────────────── */
+      .node {
+        position: relative;
+        z-index: 10;
+        flex: 1 1 0%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: 18px;
+        box-shadow: 0 1px 2px rgba(26, 43, 76, 0.06);
+        text-decoration: none;
+        transition: border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .node:hover {
+        border-color: rgba(23, 120, 111, 0.4);
+        box-shadow: 0 4px 6px -1px rgba(26, 43, 76, 0.1),
+          0 2px 4px -2px rgba(26, 43, 76, 0.06);
+      }
+
+      .node--emergency:hover {
+        border-color: rgba(217, 45, 32, 0.4);
+      }
+
+      .node__chip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 14px;
+        border-radius: 9999px;
+        background: var(--brand-light);
+        color: var(--brand);
+      }
+
+      .node--emergency .node__chip {
+        background: var(--emergency-soft);
+        color: var(--emergency);
+      }
+
+      .node__chip svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .node__title {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--text-primary);
+      }
+
+      .node__sub {
+        margin-top: 4px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      /* ── Connector segment ─────────────────────────────────────── */
+      .connector {
+        display: none;
+      }
+
+      @media (min-width: 1280px) {
+        .connector {
+          display: block;
+          position: relative;
+          flex: 1 1 0%;
+          min-width: 24px;
+          max-width: 110px;
+          height: 40px;
+          align-self: center;
+        }
+      }
+
+      .connector svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ── Traveling dot ─────────────────────────────────────────── */
+      .travel {
+        display: none;
+      }
+
+      @media (min-width: 1280px) {
+        .travel {
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 0;
+          z-index: 5;
+          pointer-events: none;
+        }
+      }
+
+      .travel__dot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-top: -4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+        background: var(--brand);
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="hero-section" class="hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__split">
+          <div>
+            <div class="badge" data-hero-badge>
+              <span class="badge__dot" aria-hidden="true"></span>
+              <span>AI-Powered Healthcare Network</span>
+            </div>
+
+            <h1 class="hero__title" data-hero-h1>
+              <!-- The trailing space keeps the accessible name readable:
+                   SplitText falls back to textContent, which would otherwise
+                   read "bestHealth Solutions". -->
+              <span class="hero__title-line hero__title-line--ink">We connect you to the best </span><br />
+              <span class="hero__title-line hero__title-line--brand">Health Solutions</span>
+            </h1>
+
+            <p class="hero__sub" data-hero-subtext>
+              MediLink AI puts everyday medicines, specialist doctors and emergency help in one place —
+              with a Bangla-first AI assistant that explains what to do next.
+            </p>
+
+            <div class="hero__actions" data-hero-cta>
+              <a class="btn btn--primary" href="/chat">
+                Dr MediLink
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a class="btn btn--secondary" href="/doctors">Find a doctor</a>
+              <a class="btn btn--tertiary" href="/subscription">
+                Go Premium <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <p class="hero__assurance" data-hero-assurance>
+              No account needed · Bangla &amp; English · Emergency 999
+            </p>
+          </div>
+
+          <div class="hero__visual" data-hero-visual>
+            <p class="sr-only">
+              Product preview: Dr. MediLink, MediLink AI's Bangla-first assistant, answering a patient
+              who describes three days of fever and a sore throat, and offering to connect a doctor.
+            </p>
+
+            <div aria-hidden="true">
+              <div class="hero-visual-card">
+                <div class="chat__chrome">
+                  <i></i><i></i><i></i>
+                  <span class="chat__url">medilink.ai/chat</span>
+                </div>
+
+                <div class="chat__header">
+                  <span class="chat__avatar">DM</span>
+                  <div>
+                    <p class="chat__name">Dr. MediLink</p>
+                    <p class="chat__role">AI health assistant · Bangla &amp; English</p>
+                  </div>
+                </div>
+
+                <div class="chat__body">
+                  <p class="bubble bubble--user" lang="bn">
+                    ভাই, তিন দিন ধরে জ্বর আর গলা ব্যথা। এখন কী করব?
+                  </p>
+                  <div class="bubble--bot">
+                    <span class="chat__dm">DM</span>
+                    <p class="bubble">
+                      বেশি পানি খান, শরীর ঠান্ডা রাখুন। দুই দিনে উন্নতি না হলে
+                      আমাদের ডাক্তারের সাথে কথা বলুন।
+                    </p>
+                  </div>
+                  <div class="chat__handoff">
+                    <span>Connect to a specialist</span>
+                    <span>6 specialists</span>
+                  </div>
+                </div>
+
+                <div class="chat__prompts">
+                  <span lang="bn">ডাক্তার দেখান</span>
+                  <span lang="bn">ঔষধ অর্ডার</span>
+                  <span lang="bn">জরুরি সাহায্য</span>
+                </div>
+              </div>
+
+              <div class="hero-float-card hero-float-card--emergency" data-hero-float>
+                <span class="hero-float-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 18v-6a5 5 0 0 1 10 0v6" />
+                    <path d="M5 21h14a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H5a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2Z" />
+                  </svg>
+                </span>
+                <div>
+                  <p class="hero-float-card__title">Emergency 999</p>
+                  <p class="hero-float-card__sub">5 hospitals nearby</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="band" aria-labelledby="hero-services-heading">
+          <h2 class="band__label" id="hero-services-heading">How MediLink helps</h2>
+
+          <div class="band__row" data-hero-nodes>
+            <a class="node" href="/chat" data-node-card="0">
+              <span class="node__chip" data-node-chip aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </span>
+              <h3 class="node__title">Chat</h3>
+              <p class="node__sub">Ask in Bangla or English</p>
+            </a>
+
+            <span class="connector" data-connector="0" aria-hidden="true">
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+                <line
+                  data-connector-line
+                  x1="0"
+                  y1="20"
+                  x2="100"
+                  y2="20"
+                  stroke="rgb(23, 120, 111)"
+                  stroke-width="2"
+                  vector-effect="non-scaling-stroke"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+            <a class="node" href="/pharmacy" data-node-card="1">
+              <span class="node__chip" data-node-chip aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+                  <path d="m8.5 8.5 7 7" />
+                </svg>
+              </span>
+              <h3 class="node__title">Medicines</h3>
+              <p class="node__sub">12 in the catalogue</p>
+            </a>
+
+            <span class="connector" data-connector="1" aria-hidden="true">
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+                <line
+                  data-connector-line
+                  x1="0"
+                  y1="20"
+                  x2="100"
+                  y2="20"
+                  stroke="rgb(23, 120, 111)"
+                  stroke-width="2"
+                  vector-effect="non-scaling-stroke"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+            <a class="node" href="/doctors" data-node-card="2">
+              <span class="node__chip" data-node-chip aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 2v2M5 2v2M5 3H4a2 2 0 0 0-2 2v3a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1" />
+                  <path d="M3 15v2a6 6 0 0 0 12 0v-2" />
+                  <circle cx="20" cy="10" r="6" />
+                  <path d="M20 8v4M18 10h4" />
+                </svg>
+              </span>
+              <h3 class="node__title">Doctors</h3>
+              <p class="node__sub">6 specialists</p>
+            </a>
+
+            <span class="connector" data-connector="2" aria-hidden="true">
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+                <line
+                  data-connector-line
+                  x1="0"
+                  y1="20"
+                  x2="100"
+                  y2="20"
+                  stroke="rgb(23, 120, 111)"
+                  stroke-width="2"
+                  vector-effect="non-scaling-stroke"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+            <a class="node node--emergency" href="/emergency" data-node-card="3">
+              <span class="node__chip" data-node-chip aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 18v-6a5 5 0 0 1 10 0v6" />
+                  <path d="M5 21h14a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H5a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2Z" />
+                </svg>
+              </span>
+              <h3 class="node__title">Emergency</h3>
+              <p class="node__sub">999 · 5 hospitals</p>
+            </a>
+
+            <span class="travel" data-travel-track aria-hidden="true">
+              <span class="travel__dot" data-travel-dot></span>
+            </span>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+
+    <script>
+      (function () {
+        var root = document.getElementById("hero-section");
+        var h1 = root.querySelector("[data-hero-h1]");
+
+        function all(selector) {
+          return Array.prototype.slice.call(root.querySelectorAll(selector));
+        }
+
+        var badge = all("[data-hero-badge]");
+        var subtext = all("[data-hero-subtext]");
+        var ctaRow = all("[data-hero-cta]");
+        var assurance = all("[data-hero-assurance]");
+        var visual = all("[data-hero-visual]");
+        var floats = all("[data-hero-float]");
+        var nodeCards = all("[data-node-card]");
+        var iconChips = all("[data-node-chip]");
+        var connectorLines = all("[data-connector-line]");
+        var travelTrack = root.querySelector("[data-travel-track]");
+        var travelDot = root.querySelector("[data-travel-dot]");
+
+        gsap.registerPlugin(DrawSVGPlugin, SplitText, CustomEase);
+        if (!CustomEase.get("medilink")) {
+          CustomEase.create("medilink", "M0,0 C0.22,1 0.36,1 1,1");
+        }
+
+        var mm = gsap.matchMedia();
+
+        mm.add("(prefers-reduced-motion: reduce)", function () {
+          var visible = [].concat(
+            badge,
+            subtext,
+            ctaRow,
+            assurance,
+            visual,
+            floats,
+            nodeCards,
+            iconChips
+          );
+          gsap.set(visible, { clearProps: "all" });
+          gsap.set(visible, { opacity: 1, y: 0, scale: 1 });
+          gsap.set(connectorLines, { drawSVG: "0% 100%" });
+          gsap.set(travelDot, { opacity: 0 });
+        });
+
+        mm.add("(prefers-reduced-motion: no-preference)", function () {
+          gsap.set(badge, { opacity: 0, y: 16 });
+          gsap.set(subtext, { opacity: 0, y: 12 });
+          gsap.set(ctaRow, { opacity: 0, y: 14, scale: 0.96 });
+          gsap.set(assurance, { opacity: 0 });
+          gsap.set(visual, { opacity: 0, y: 30, scale: 0.97 });
+          gsap.set(floats, { opacity: 0, y: 18, scale: 0.94 });
+          gsap.set(nodeCards, { opacity: 0, scale: 0.82, y: 12 });
+          gsap.set(iconChips, { scale: 0.6 });
+          gsap.set(connectorLines, { drawSVG: "0% 0%" });
+          gsap.set(travelDot, { opacity: 0, xPercent: -120 });
+
+          var split = SplitText.create(h1, {
+            type: "lines",
+            mask: "lines",
+            linesClass: "hero-h1-line",
+          });
+          gsap.set(split.lines, { yPercent: 110 });
+
+          var travelTween = gsap.to(travelDot, {
+            /* Normalised 0 → 1 progress; the modifier turns it into pixels
+               against the LIVE track width so the dot survives a resize. */
+            x: 1,
+            duration: 2.4,
+            ease: "none",
+            repeat: -1,
+            paused: true,
+            modifiers: {
+              x: function (value) {
+                var width = travelTrack.offsetWidth;
+                return gsap.utils.wrap(0, width, parseFloat(value) * width) + "px";
+              },
+            },
+          });
+
+          /* The entrance runs on ONE tempo.
+             RHYTHM is the gap between two arrivals — every element takes its
+             cue exactly one beat after the one before it. STAGGER is the
+             shorter beat for the items INSIDE one group (headline lines, the
+             route stations and their icons). */
+          var RHYTHM = 0.16;
+          var STAGGER = 0.1;
+          function beat(index) {
+            return index * RHYTHM;
+          }
+
+          var tl = gsap.timeline({ delay: 0.1 });
+          tl.to(badge, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, beat(0))
+            .to(split.lines, { yPercent: 0, duration: 0.85, ease: "power4.out", stagger: STAGGER }, beat(1))
+            .to(visual, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" }, beat(2))
+            .to(subtext, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, beat(3))
+            .to(ctaRow, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, beat(4))
+            .to(assurance, { opacity: 1, duration: 0.55, ease: "power2.out" }, beat(5))
+            .to(floats, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: "back.out(1.6)", stagger: STAGGER }, beat(6))
+            .to(connectorLines, { drawSVG: "0% 100%", duration: 0.9, ease: "power2.inOut", stagger: STAGGER }, beat(7))
+            .to(nodeCards, { opacity: 1, scale: 1, y: 0, duration: 0.75, ease: "back.out(1.6)", stagger: STAGGER }, beat(8))
+            .to(iconChips, { scale: 1, duration: 0.55, ease: "back.out(2)", stagger: STAGGER }, beat(9))
+            /* The dot joins last and only starts moving once it has faded in,
+               so it never glides along a line that has not been drawn yet. */
+            .to(travelDot, {
+              opacity: 1,
+              duration: 0.45,
+              ease: "medilink",
+              onComplete: function () {
+                travelTween.play();
+              },
+            }, beat(10));
+
+          /* Hover micro-interactions (outside the entrance timeline). */
+          nodeCards.forEach(function (card, index) {
+            var chip = card.querySelector("[data-node-chip]");
+            var adjacent = [connectorLines[index - 1], connectorLines[index]].filter(Boolean);
+
+            card.addEventListener("mouseenter", function () {
+              gsap.to(card, { y: -4, duration: 0.25, ease: "power2.out" });
+              gsap.to(chip, { scale: 1.08, duration: 0.25, ease: "medilink" });
+              adjacent.forEach(function (line) {
+                gsap.to(line, { strokeWidth: 3, duration: 0.25, ease: "power2.out" });
+              });
+            });
+
+            card.addEventListener("mouseleave", function () {
+              gsap.to(card, { y: 0, duration: 0.25, ease: "power2.out" });
+              gsap.to(chip, { scale: 1, duration: 0.25, ease: "medilink" });
+              adjacent.forEach(function (line) {
+                gsap.to(line, { strokeWidth: 2, duration: 0.25, ease: "power2.out" });
+              });
+            });
+          });
+
+          return function () {
+            split.revert();
+          };
+        });
+      })();
+    </script>
+  </body>
+</html>

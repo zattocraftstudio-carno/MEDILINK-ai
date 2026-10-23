@@ -1,0 +1,200 @@
+[
+  {
+    "id": "doc_001",
+    "name": "Dr. Karim Ahmed",
+    "specialty": "Cardiology",
+    "experienceYears": 12,
+    "feeWhatsapp": 300,
+    "feeVideo": 500,
+    "whatsappNumber": "8801811389672",
+    "area": "Mirpur, Dhaka",
+    "city": "Dhaka",
+    "latitude": 23.8223,
+    "longitude": 90.3643,
+    "rating": 4.8,
+    "reviewCount": 124,
+    "bio": "Senior consultant specializing in hypertension, chest pain, and heart failure management.",
+    "education": ["MBBS — Dhaka Medical College", "FCPS — Cardiology"],
+    "availability": "Sat–Wed · 6:00 PM – 9:00 PM",
+    "photo": "/assets/doctors/karim-ahmed.jpg",
+    "reviews": [
+      {
+        "userName": "Rahat Hossain",
+        "area": "Mirpur, Dhaka",
+        "rating": 5,
+        "comment": "Very thorough and explained everything clearly. The WhatsApp booking took less than a minute."
+      },
+      {
+        "userName": "Sumon Mia",
+        "area": "Uttara, Dhaka",
+        "rating": 5,
+        "comment": "Listened carefully and adjusted my medication plan."
+      }
+    ]
+  },
+  {
+    "id": "doc_002",
+    "name": "Dr. Salma Begum",
+    "specialty": "Pediatrics",
+    "experienceYears": 9,
+    "feeWhatsapp": 250,
+    "feeVideo": 400,
+    "whatsappNumber": "8801811389672",
+    "area": "Dhanmondi, Dhaka",
+    "city": "Dhaka",
+    "latitude": 23.7465,
+    "longitude": 90.376,
+    "rating": 4.9,
+    "reviewCount": 210,
+    "bio": "Child health specialist focused on fever, nutrition, and newborn care.",
+    "education": ["MBBS — Sylhet MAG Osmani Medical College", "DCP — Paediatrics"],
+    "availability": "Sat–Thu · 10:00 AM – 1:00 PM",
+    "photo": "/assets/doctors/salma-begum.jpg",
+    "reviews": [
+      {
+        "userName": "Nusrat Fatema",
+        "area": "Dhanmondi, Dhaka",
+        "rating": 5,
+        "comment": "Great with children and very patient. She answered questions we did not know we had."
+      },
+      {
+        "userName": "Farhana Akter",
+        "area": "Sylhet Sadar, Sylhet",
+        "rating": 4,
+        "comment": "Very good consultation, booking slot was slightly delayed."
+      }
+    ]
+  },
+  {
+    "id": "doc_003",
+    "name": "Dr. Rafiq Islam",
+    "specialty": "Dermatology",
+    "experienceYears": 7,
+    "feeWhatsapp": 300,
+    "feeVideo": 450,
+    "whatsappNumber": "8801811389672",
+    "area": "Gulshan, Dhaka",
+    "city": "Dhaka",
+    "latitude": 23.7925,
+    "longitude": 90.4078,
+    "rating": 4.7,
+    "reviewCount": 89,
+    "bio": "Skin, hair, and allergy specialist with a focus on honest, minimal treatment.",
+    "education": ["MBBS — Chittagong Medical College", "FCPS — Dermatology"],
+    "availability": "Sun–Thu · 5:00 PM – 8:00 PM",
+    "photo": "/assets/doctors/rafiq-islam.jpg",
+    "reviews": [
+      {
+        "userName": "Karim Uddin",
+        "area": "Gulshan, Dhaka",
+        "rating": 4,
+        "comment": "Good advice, and honest about what I did not need to buy. Reply took a little while."
+      },
+      {
+        "userName": "Mitu Rani",
+        "area": "Chattogram",
+        "rating": 5,
+        "comment": "My skin problem improved exactly as he described."
+      }
+    ]
+  },
+  {
+    "id": "doc_004",
+    "name": "Dr. Nusrat Jahan",
+    "specialty": "Gynecology",
+    "experienceYears": 15,
+    "feeWhatsapp": 400,
+    "feeVideo": 600,
+    "whatsappNumber": "8801811389672",
+    "area": "Uttara, Dhaka",
+    "city": "Dhaka",
+    "latitude": 23.8759,
+    "longitude": 90.3795,
+    "rating": 4.8,
+    "reviewCount": 156,
+    "bio": "Women's health specialist covering pregnancy care and hormonal disorders.",
+    "education": ["MBBS — Dhaka Medical College", "MS — Gynecology & Obstetrics"],
+    "availability": "Sat–Wed · 4:00 PM – 7:00 PM",
+    "photo": "/assets/doctors/nusrat-jahan.jpg",
+    "reviews": [
+      {
+        "userName": "Ayesha Khatun",
+        "area": "Uttara, Dhaka",
+        "rating": 5,
+        "comment": "Explained my pregnancy care plan clearly and calmly."
+      },
+      {
+        "userName": "Rina Das",
+        "area": "Uttara, Dhaka",
+        "rating": 4,
+        "comment": "Very knowledgeable. Chamber was busy, but worth the wait."
+      }
+    ]
+  },
+  {
+    "id": "doc_005",
+    "name": "Dr. Tanvir Hossain",
+    "specialty": "General Physician",
+    "experienceYears": 6,
+    "feeWhatsapp": 200,
+    "feeVideo": 350,
+    "whatsappNumber": "8801811389672",
+    "area": "Sylhet Sadar, Sylhet",
+    "city": "Sylhet",
+    "latitude": 24.8949,
+    "longitude": 91.8687,
+    "rating": 4.6,
+    "reviewCount": 78,
+    "bio": "Family physician for fever, cough, gastric, and everyday illnesses.",
+    "education": ["MBBS — Sylhet MAG Osmani Medical College"],
+    "availability": "Every day · 8:00 AM – 11:00 AM",
+    "photo": "/assets/doctors/tanvir-hossain.jpg",
+    "reviews": [
+      {
+        "userName": "Jahid Hasan",
+        "area": "Sylhet Sadar, Sylhet",
+        "rating": 5,
+        "comment": "Quick, friendly, and the medicine worked."
+      },
+      {
+        "userName": "Shoma Ahmed",
+        "area": "Sylhet Sadar, Sylhet",
+        "rating": 4,
+        "comment": "Simple clear advice. Recommended for common illness."
+      }
+    ]
+  },
+  {
+    "id": "doc_006",
+    "name": "Dr. Ayesha Siddiqua",
+    "specialty": "Neurology",
+    "experienceYears": 11,
+    "feeWhatsapp": 350,
+    "feeVideo": 550,
+    "whatsappNumber": "8801811389672",
+    "area": "Chattogram",
+    "city": "Chattogram",
+    "latitude": 22.3569,
+    "longitude": 91.8332,
+    "rating": 4.7,
+    "reviewCount": 102,
+    "bio": "Neurologist for migraine, epilepsy, and stroke follow-up care.",
+    "education": ["MBBS — Dhaka Medical College", "MD — Neurology"],
+    "availability": "Mon–Thu · 6:00 PM – 9:00 PM",
+    "photo": "/assets/doctors/ayesha-siddiqua.jpg",
+    "reviews": [
+      {
+        "userName": "Mizanur Rahman",
+        "area": "Chattogram",
+        "rating": 5,
+        "comment": "Careful diagnosis and very clear instructions."
+      },
+      {
+        "userName": "Pola Das",
+        "area": "Chattogram",
+        "rating": 5,
+        "comment": "My mother's migraine plan finally works."
+      }
+    ]
+  }
+]
