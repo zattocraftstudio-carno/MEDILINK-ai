@@ -1,204 +1,6 @@
 export type Language = "en" | "bn";
 
-export interface TranslationSchema {
-  nav: {
-    chat: string;
-    pharmacy: string;
-    doctors: string;
-    about: string;
-    contact: string;
-    emergency: string;
-    register: string;
-    profile: string;
-    getPremium: string;
-    premiumBadge: string;
-    menu: string;
-    close: string;
-  };
-  bottomNav: {
-    home: string;
-    chat: string;
-    pharmacy: string;
-    doctors: string;
-    sos: string;
-  };
-  footer: {
-    tagline: string;
-    platform: string;
-    company: string;
-    getInTouch: string;
-    emergencyNum: string;
-    languageLabel: string;
-    home: string;
-    findDoctor: string;
-    aiAdvisor: string;
-    pharmacy: string;
-    premium: string;
-    aboutUs: string;
-    meetTeam: string;
-    contactUs: string;
-    disclaimer: string;
-  };
-  hero: {
-    badge: string;
-    h1Line1: string;
-    h1Line2: string;
-    subtext: string;
-    drMediLink: string;
-    findDoctor: string;
-    goPremium: string;
-    assurance: string;
-    chatCard: {
-      title: string;
-      subtitle: string;
-      sampleUser: string;
-      sampleAi: string;
-      specialistAction: string;
-      specialistCount: string;
-    };
-  };
-  common: {
-    loading: string;
-    search: string;
-    viewDetails: string;
-    back: string;
-    cancel: string;
-    save: string;
-    delete: string;
-    edit: string;
-  };
-
-  services: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    cards: {
-      aiDoctor: {
-        badge: string;
-        secondaryBadge: string;
-        title: string;
-        description: string;
-        features: string[];
-        cta: string;
-        helper: string;
-        scorecard: {
-          engine: string;
-          status: string;
-          accuracy: string;
-          response: string;
-          queries: string;
-          sampleLabel: string;
-        };
-        chips: string[];
-      };
-      findDoctor: {
-        badge: string;
-        title: string;
-        description: string;
-        searchPlaceholder: string;
-        chips: string[];
-        footer: string;
-        cta: string;
-      };
-      pharmacy: {
-        badge: string;
-        title: string;
-        description: string;
-        footer: string;
-        cta: string;
-      };
-      emergency: {
-        badge: string;
-        title: string;
-        description: string;
-        features: string[];
-        footer: string;
-        cta: string;
-      };
-      healthRecords: {
-        badge: string;
-        title: string;
-        description: string;
-        dataStorage: string;
-        exportFormat: string;
-        cloudLogging: string;
-        footer: string;
-        cta: string;
-      };
-    };
-  };
-
-  trust: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    stats: {
-      patients: string;
-      doctors: string;
-      accuracy: string;
-      support: string;
-    };
-  };
-
-  reviews: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    testimonials: Array<{
-      name: string;
-      city: string;
-      quote: string;
-    }>;
-  };
-
-  faq: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    items: Array<{
-      q: string;
-      a: string;
-      steps: string[];
-    }>;
-  };
-
-  plans: {
-    title: string;
-    subtitle: string;
-    free: {
-      name: string;
-      price: string;
-      period: string;
-      description: string;
-      features: string[];
-      cta: string;
-    };
-    premium: {
-      name: string;
-      price: string;
-      period: string;
-      description: string;
-      badge: string;
-      features: string[];
-      cta: string;
-      manageCta: string;
-    };
-    note: string;
-  };
-
-  finalCta: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    features: string[];
-    buttons: Array<{
-      title: string;
-      subtitle: string;
-    }>;
-  };
-}
-
-export const translations: Record<Language, TranslationSchema> = {
+export const translations = {
   en: {
     nav: {
       chat: "Chat",
@@ -252,7 +54,7 @@ export const translations: Record<Language, TranslationSchema> = {
       findDoctor: "Find a doctor",
       goPremium: "Go Premium",
       assurance: "No account needed · Bangla & English · Emergency 999",
-      chatCard: {
+chatCard: {
         title: "Dr. MediLink",
         subtitle: "AI health assistant · Bangla & English",
         sampleUser: "Brother, I have had fever and throat pain for 3 days. What should I do now?",
@@ -271,6 +73,102 @@ export const translations: Record<Language, TranslationSchema> = {
       save: "Save",
       delete: "Delete",
       edit: "Edit",
+    },
+
+    chat: {
+      composerPlaceholder: "Describe symptoms or ask health questions...",
+      composerPlaceholderVoice: "Listening to your voice…",
+      srComposerLabel: "Describe symptoms or ask a health question",
+      listeningBanner: "Listening… speak into your microphone",
+      bannerStop: "Stop",
+      voiceErrorDismiss: "Dismiss",
+      micStart: "Start voice typing",
+      micStop: "Stop voice typing",
+      send: "Send message",
+      stopGenerating: "Stop generating",
+      disclaimer: "Dr MediLink is an AI health companion. In medical emergencies, immediately call 999.",
+      kindPrescription: "Prescription",
+      kindReport: "Test Report",
+      kindPhoto: "Photo",
+      attachedDoc: "Attached document",
+      pendingReady: "Ready to send",
+      pendingScanning: "Reading your document…",
+      pendingRemove: "Remove attached document",
+
+      emptyTitle: "How can I help you today?",
+      emptyBody: "Describe your symptoms or ask a health-related question. I can also help you find medicines or doctors.",
+      typingTitle: "Dr MediLink is typing",
+      typingBody: "Taking a look at your symptoms…",
+      copy: "Copy",
+      copied: "Copied",
+      copyAria: "Copy message",
+      copyTitle: "Copy response",
+      listen: "Listen",
+      listenStop: "Stop",
+      listenAria: "Read aloud",
+      listenStopAria: "Stop listening",
+      listenTitle: "Listen to response",
+      listenStopTitle: "Stop speaking",
+
+      promptFever: "Fever for 2 days plus headache — what should I do?",
+      promptAcid: "Why do I have heartburn and a sour taste in my mouth?",
+      promptChild: "My child has a dry cough at night — what can I do?",
+      promptDiabetes: "What should I eat to manage my blood sugar today?",
+      promptAsthma: "My asthma is acting up because of the dust. What should I do?",
+      promptBp: "Which foods should I avoid for high blood pressure?",
+
+      deleteTitle: "Delete Conversation?",
+      deleteBody: "This will permanently remove this chat from your history.",
+
+      limitTitle: "Daily Limit Reached",
+      limitBody: "You’ve used your free AI chats for today. Upgrade to Premium for unlimited access, or come back tomorrow.",
+      limitLater: "Maybe tomorrow",
+      limitUpgrade: "Upgrade to Premium",
+
+      historyTitle: "Chat History",
+      historyFreeNotice: "Free Plan keeps only your last 3 chats. Upgrade to Premium to unlock your full history and PDF exports.",
+      historySearchLabel: "Search chat history",
+      historySearchPlaceholder: "Search chats and messages...",
+      historySearchClear: "Clear search",
+      historySearchNoMatches: "No matches",
+      historySearchProgress: "of",
+      numChats: "chats",
+      historyEmptyTitle: "No conversations yet",
+      historyNoMatchTitle: "No chats match “{q}”",
+      historyEmptyBody: "Start a new chat and it will appear here.",
+      historyNoMatchBody: "Try a medicine name, a symptom, or a word from the conversation.",
+      historyDownload: "Download PDF",
+      historyDelete: "Delete chat",
+
+      machineRead: "Machine-read",
+      enteredByYou: "Entered by you",
+      confirmed: "Confirmed",
+      uploadedDoc: "Uploaded document",
+      confidence: "confidence",
+      manualEntry: "Enter details manually",
+      tryAgain: "Try again",
+      prescriber: "Prescriber",
+      clinic: "Clinic",
+      date: "Date",
+      noStructure: "No structured details could be read from this document.",
+      confirmUse: "Confirm & use",
+      checkOriginal: "Check against the original before sharing.",
+      removeAttachment: "Remove attachment",
+      medicinesCount: "Medicines",
+      testResults: "Test results",
+      refRange: "Ref",
+
+      toastDeleted: "Conversation deleted.",
+      toastDocConfirmed: "Document confirmed.",
+      toastRetryUpload: "Please upload the document again to retry.",
+      toastSummaryTooShort: "Chat a little more so there is something to summarise.",
+      toastPdfPrinted: "Print dialog opened — choose “Save as PDF” to download.",
+      scanFailSimple: "We could not read this image clearly. Please enter the details manually.",
+      scanFailNet: "We could not read this image clearly. Please check your connection or enter the details manually.",
+      scanFailProcess: "We could not process that image. Please try another photo.",
+      streamBroken: "Sorry, the connection dropped mid-reply. Please send the message again.",
+      streamInterruptedNote: "(The connection dropped mid-reply — send again and you will get the full answer.)",
+      noBodyError: "No response body",
     },
 
     services: {
@@ -515,6 +413,69 @@ export const translations: Record<Language, TranslationSchema> = {
         },
       ],
     },
+
+    sidebar: {
+      title: "Menu",
+      guest: "Guest",
+      areaNotSet: "Area not set",
+      premium: "Premium",
+      coreActions: "Core Actions",
+      summarize: "Summarize for Doctor",
+      summarizeDesc: "Create a clinical summary to share",
+      needsMoreChat: "Needs more chat",
+      memoryPrompts: "Memory Prompts",
+      memoryPromptsDesc: "Persistent instructions for Dr MediLink",
+      findDoctor: "Find a Doctor",
+      findDoctorDesc: "Browse verified specialists",
+      chatHistory: "Chat History",
+      conversations: "conversations",
+      healthLog: "Health Log",
+      healthLogDesc: "Track vitals: BP, Sugar, Temperature",
+      usage: "Today's Usage",
+      unlimited: "Unlimited",
+      premiumPlan: "Premium Plan",
+      freePlan: "Free Plan",
+      upgradePremium: "Upgrade to Premium",
+      language: "Language",
+      languageHint: "Switch the whole app",
+      medications: "Medicine Reminders",
+      medicationsDesc: "Timers, refills & schedule",
+      noReminders: "No reminders yet — set one from any chat",
+      doseReminders: "Dose Reminders",
+      reminder: "reminder",
+      reminders: "reminders",
+      manageTimers: "Manage your dose timers",
+      viewReminders: "View reminders",
+      settings: "Settings",
+      profile: "Profile",
+      help: "Help & Support",
+      subscription: "Subscription",
+      logout: "Logout",
+    },
+
+    chatHeader: {
+      openMenu: "Open menu",
+      flash: "Flash",
+      pro: "Pro",
+      memoryPrompts: "Memory Prompts",
+      memoryPromptsTitle: "Memory Prompts — persistent instructions for Dr MediLink",
+      summarize: "Summarize",
+      summarizeTooltip: "Summarize this chat for a doctor",
+      summarizeDisabledTooltip: "Chat a little more so there is something to summarise",
+      healthLog: "Health Log",
+      chatHistory: "Chat history",
+      newChat: "New chat",
+      newChatDesc: "Start over with a clean slate",
+      more: "More options",
+      moreTitle: "Chat tools",
+      groupChats: "Chats",
+      groupThisChat: "This conversation",
+      savePdf: "Save as PDF",
+      savePdfDesc: "Print a shareable medical report",
+      pdfLocked: "Premium feature",
+      repliesLeft: "free replies left today",
+      upgradeCta: "Get unlimited replies",
+    },
   },
 
   bn: {
@@ -589,6 +550,102 @@ export const translations: Record<Language, TranslationSchema> = {
       save: "সংরক্ষণ",
       delete: "মুছুন",
       edit: "সম্পাদনা",
+    },
+
+    chat: {
+      composerPlaceholder: "লক্ষণ লিখুন বা স্বাস্থ্য সংক্রান্ত প্রশ্ন করুন...",
+      composerPlaceholderVoice: "আপনার কথা শুনছি…",
+      srComposerLabel: "লক্ষণ লিখুন বা স্বাস্থ্য নিয়ে প্রশ্ন করুন",
+      listeningBanner: "শুনছি… মাইকের সামনে কথা বলুন",
+      bannerStop: "থামান",
+      voiceErrorDismiss: "বন্ধ করুন",
+      micStart: "ভয়েস টাইপিং চালু করুন",
+      micStop: "ভয়েস টাইপিং বন্ধ করুন",
+      send: "পাঠান",
+      stopGenerating: "উত্তর থামান",
+      disclaimer: "Dr MediLink একজন AI স্বাস্থ্য সহকারী। জরুরি অবস্থায় সাথে সাথে ৯৯৯-এ কল করুন।",
+      kindPrescription: "প্রেসক্রিপশন",
+      kindReport: "টেস্ট রিপোর্ট",
+      kindPhoto: "ছবি",
+      attachedDoc: "সংযুক্ত ডকুমেন্ট",
+      pendingReady: "পাঠানোর জন্য প্রস্তুত",
+      pendingScanning: "ডকুমেন্টটি পড়া হচ্ছে…",
+      pendingRemove: "সংযুক্ত ডকুমেন্ট সরান",
+
+      emptyTitle: "আজ আমি আপনাকে কীভাবে সাহায্য করতে পারি?",
+      emptyBody: "আপনার লক্ষণ লিখুন বা স্বাস্থ্য নিয়ে প্রশ্ন করুন। ওষুধ বা ডাক্তার খুঁজে দিতেও সাহায্য করতে পারি।",
+      typingTitle: "Dr MediLink লিখছে",
+      typingBody: "আপনার লক্ষণগুলো দেখা হচ্ছে…",
+      copy: "কপি",
+      copied: "কপি হয়েছে",
+      copyAria: "মেসেজ কপি করুন",
+      copyTitle: "উত্তর কপি করুন",
+      listen: "শুনুন",
+      listenStop: "থামান",
+      listenAria: "উত্তরটি শুনুন",
+      listenStopAria: "শোনা বন্ধ করুন",
+      listenTitle: "উত্তর শুনুন",
+      listenStopTitle: "শোনা বন্ধ করুন",
+
+      promptFever: "জ্বর ২ দিন ধরে, সাথে মাথা ব্যথা — এখন কী করব?",
+      promptAcid: "বুকে জ্বালাপোড়া আর টক ঢেঁকুর কেন হচ্ছে?",
+      promptChild: "শিশুর রাতে শুকনো কাশি — আমি কী করতে পারি?",
+      promptDiabetes: "ডায়াবেটিস নিয়ন্ত্রণে রাখতে আজ কী খাওয়া উচিত?",
+      promptAsthma: "ধুলার কারণে হাঁপানি বেড়ে গেছে। কী করব?",
+      promptBp: "উচ্চ রক্তচাপের জন্য কোন খাবারগুলো খাওয়া থেকে বিরত থাকব?",
+
+      deleteTitle: "কথোপকথন মুছে ফেলবেন?",
+      deleteBody: "এটি আপনার হিস্ট্রি থেকে এই চ্যাটটি স্থায়ীভাবে মুছে ফেলবে।",
+
+      limitTitle: "আজকের লিমিট শেষ",
+      limitBody: "আজকের জন্য ফ্রি এআই চ্যাট শেষ হয়ে গেছে। সীমাহীন ব্যবহারের জন্য প্রিমিয়াম নিন, অথবা আগামীকাল ফিরে আসুন।",
+      limitLater: "পরে দেখব",
+      limitUpgrade: "প্রিমিয়াম নিন",
+
+      historyTitle: "চ্যাট হিস্ট্রি",
+      historyFreeNotice: "ফ্রি প্ল্যানে শেষ ৩টি চ্যাট থাকে। সম্পূর্ণ হিস্ট্রি ও PDF এক্সপোর্ট পেতে প্রিমিয়াম নিন।",
+      historySearchLabel: "চ্যাট হিস্ট্রি খুঁজুন",
+      historySearchPlaceholder: "চ্যাট বা মেসেজ খুঁজুন...",
+      historySearchClear: "খুঁজুন পরিষ্কার করুন",
+      historySearchNoMatches: "কিছু পাওয়া যায়নি",
+      historySearchProgress: "-এর মধ্যে",
+      numChats: "টি চ্যাট",
+      historyEmptyTitle: "এখনো কোনো কথোপকথন নেই",
+      historyNoMatchTitle: "“{q}” নামে কিছু পাওয়া যায়নি",
+      historyEmptyBody: "নতুন একটি চ্যাট শুরু করুন — এটি এখানে দেখা যাবে।",
+      historyNoMatchBody: "ওষুধের নাম, লক্ষণ বা কথোপকথনের কোনো শব্দ দিয়ে খুঁজে দেখুন।",
+      historyDownload: "PDF ডাউনলোড",
+      historyDelete: "চ্যাট মুছুন",
+
+      machineRead: "মেশিনে-পড়া",
+      enteredByYou: "আপনার লেখা",
+      confirmed: "নিশ্চিত করা হয়েছে",
+      uploadedDoc: "আপলোড করা ডকুমেন্ট",
+      confidence: "সঠিকতা",
+      manualEntry: "নিজে লিখে দিন",
+      tryAgain: "আবার চেষ্টা করুন",
+      prescriber: "চিকিৎসক",
+      clinic: "ক্লিনিক",
+      date: "তারিখ",
+      noStructure: "এই ডকুমেন্ট থেকে কোনো সাজানো তথ্য পড়া যায়নি।",
+      confirmUse: "নিশ্চিত করে ব্যবহার করুন",
+      checkOriginal: "শেয়ার করার আগে মূল ডকুমেন্টের সাথে মিলিয়ে নিন।",
+      removeAttachment: "সংযুক্তি সরান",
+      medicinesCount: "ওষুধ",
+      testResults: "টেস্ট রেজাল্ট",
+      refRange: "সাধারণ মাত্রা",
+
+      toastDeleted: "কথোপকথন মুছে ফেলা হয়েছে।",
+      toastDocConfirmed: "ডকুমেন্ট নিশ্চিত করা হয়েছে।",
+      toastRetryUpload: "আবার ট্রাই করতে ডকুমেন্টটি নতুন করে আপলোড করুন।",
+      toastSummaryTooShort: "সারসংক্ষেপের জন্য একটু বেশি কথা বলুন।",
+      toastPdfPrinted: "প্রিন্ট ডায়ালগ খুলেছে — “Save as PDF” নির্বাচন করে ডাউনলোড করুন।",
+      scanFailSimple: "ছবিটি স্পষ্টভাবে পড়া যায়নি। নিজে লিখে দিন।",
+      scanFailNet: "ছবিটি স্পষ্টভাবে পড়া যায়নি। নেটওয়ার্ক দেখুন বা নিজে লিখে দিন।",
+      scanFailProcess: "ছবিটি প্রসেস করা গেল না। অন্য ছবি দিয়ে চেষ্টা করুন।",
+      streamBroken: "দুঃখিত, উত্তর আসার মাঝপথে সংযোগ বিচ্ছিন্ন হয়েছে। মেসেজটি আবার পাঠান।",
+      streamInterruptedNote: "(উত্তরের মাঝপথে সংযোগ বিচ্ছিন্ন হয়েছে — আবার পাঠালে পুরো উত্তর পাবেন।)",
+      noBodyError: "কোনো উত্তর পাওয়া যায়নি",
     },
 
     services: {
@@ -832,5 +889,72 @@ export const translations: Record<Language, TranslationSchema> = {
         },
       ],
     },
+
+    sidebar: {
+      title: "মেনু",
+      guest: "অতিথি",
+      areaNotSet: "এলাকা নির্ধারিত নেই",
+      premium: "প্রিমিয়াম",
+      coreActions: "মূল অ্যাকশন",
+      summarize: "ডাক্তারের জন্য সারসংক্ষেপ",
+      summarizeDesc: "ক্লিনিক্যাল সারসংক্ষেপ তৈরি করে শেয়ার করুন",
+      needsMoreChat: "আরো কথা বলুন",
+      memoryPrompts: "মেমরি প্রম্পট",
+      memoryPromptsDesc: "ডাঃ মেডি-লিংকের জন্য স্থায়ী নির্দেশনা",
+      findDoctor: "ডাক্তার খুঁজুন",
+      findDoctorDesc: "যাচাইকৃত বিশেষজ্ঞ ব্রাউজ করুন",
+      chatHistory: "চ্যাট হিস্ট্রি",
+      conversations: "কথা-বাতা",
+      healthLog: "স্বাস্থ্য লগ",
+      healthLogDesc: "ভাইটাল ট্র্যাক করুন: রক্তচাপ, শর্করা, তাপমাত্রা",
+      usage: "আজকের ব্যবহার",
+      unlimited: "সীমাহীন",
+      premiumPlan: "প্রিমিয়াম প্ল্যান",
+      freePlan: "ফ্রি প্ল্যান",
+      upgradePremium: "প্রিমিয়ামে আপগ্রেড করুন",
+      language: "ভাষা",
+      languageHint: "পুরো অ্যাপের ভাষা বদলান",
+      medications: "ওষুধের রিমাইন্ডার",
+      medicationsDesc: "টাইমার, রিফিল ও সময়সূচি",
+      noReminders: "এখনো রিমাইন্ডার নেই — চ্যাট থেকে সেট করুন",
+      doseReminders: "ওষুধের স্মরণ কর্তব্য",
+      reminder: "স্মরণ কর্তব্য",
+      reminders: "স্মরণ কর্তব্য",
+      manageTimers: "আপনার ওষুধের টাইমার ম্যানেজ করুন",
+      viewReminders: "স্মরণ কর্তব্য দেখুন",
+      settings: "সেটিংস",
+      profile: "প্রোফাইল",
+      help: "সাহায্য ও সমর্থন",
+      subscription: "সাবস্ক্রিপশন",
+      logout: "লগ আউট",
+    },
+
+    chatHeader: {
+      openMenu: "মেনু খুলুন",
+      flash: "ফ্ল্যাশ",
+      pro: "প্রো",
+      memoryPrompts: "মেমরি প্রম্পট",
+      memoryPromptsTitle: "মেমরি প্রম্পট — ডাঃ মেডি-লিংকের জন্য স্থায়ী নির্দেশনা",
+      summarize: "সারসংক্ষেপ",
+      summarizeTooltip: "এই চ্যাটটি ডাক্তারের জন্য সারসংক্ষেপ করুন",
+      summarizeDisabledTooltip: "আরো কিছু কথা বলুন যাতে সারসংক্ষেপের কিছু থাকে",
+      healthLog: "স্বাস্থ্য লগ",
+      chatHistory: "চ্যাট হিস্ট্রি",
+      newChat: "নতুন চ্যাট",
+      more: "আরও অপশন",
+      moreTitle: "চ্যাট টুলস",
+      groupChats: "চ্যাট",
+      groupThisChat: "এই কথোপকথন",
+      savePdf: "PDF হিসেবে সেভ করুন",
+      savePdfDesc: "শেয়ারযোগ্য মেডিকেল রিপোর্ট প্রিন্ট করুন",
+      pdfLocked: "প্রিমিয়াম ফিচার",
+      repliesLeft: "টি ফ্রি উত্তর আজ বাকি",
+      upgradeCta: "সীমাহীন উত্তর নিন",
+      newChatDesc: "নতুন করে শুরু করুন",
+    },
   },
 };
+
+// TranslationSchema is inferred from the EN dictionary, so every key
+// added to `en` is instantly required in `bn` and `t.*` stays type-safe.
+export type TranslationSchema = typeof translations.en;
